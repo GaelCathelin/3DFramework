@@ -1,0 +1,55 @@
+NAME = Demo.exe
+
+ifeq ($(OS),Windows_NT)
+    SHELL = C:\Windows\System32\cmd.exe
+    COPY = xcopy
+    COPY_FLAGS = /Y > NUL
+    DEL = del /Q
+    SEP = \\
+else
+    COPY = cp
+    COPY_FLAGS =
+    DEL = rm -f
+    SEP = /
+endif
+
+BINDIR = bin
+SHADERDIR = shaders
+OBJDIR = obj
+SPVDIR = spv
+INCDIR = ..$(SEP)3dframework$(SEP)include
+LIBDIR = ..$(SEP)3dframework$(SEP)lib
+DLLDIR = ..$(SEP)3dframework$(SEP)bin
+
+CC = gcc
+GLSLC = $(DLLDIR)/glslc
+CFLAGS = -m64 -std=c17 -Wall -Wextra -march=ivybridge -s -O2 -Werror=unused-result -Wno-missing-field-initializers -Wdouble-promotion -DNDEBUG -I$(INCDIR)
+LDFLAGS = -mwindows -L$(LIBDIR) -L$(DLLDIR) -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lcimgui -l3dframework
+GLSLFLAGS = -std=460core -fauto-map-locations -fauto-bind-uniforms -fcbuffer-binding-base comp 0 -fcbuffer-binding-base vert 0 -fcbuffer-binding-base tesc 1 -fcbuffer-binding-base tese 2 -fcbuffer-binding-base geom 3 -fcbuffer-binding-base frag 4 -fimage-binding-base comp 16 -fimage-binding-base vert 16 -fimage-binding-base tesc 32 -fimage-binding-base tese 48 -fimage-binding-base geom 64 -fimage-binding-base frag 80 -fsampler-binding-base comp 16 -fsampler-binding-base vert 16 -fsampler-binding-base tesc 32 -fsampler-binding-base tese 48 -fsampler-binding-base geom 64 -fsampler-binding-base frag 80 -ftexture-binding-base comp 16 -ftexture-binding-base vert 16 -ftexture-binding-base tesc 32 -ftexture-binding-base tese 48 -ftexture-binding-base geom 64 -ftexture-binding-base frag 80 -fssbo-binding-base comp 96 -fssbo-binding-base vert 96 -fssbo-binding-base tesc 112 -fssbo-binding-base tese 128 -fssbo-binding-base geom 144 -fssbo-binding-base frag 160 -fuav-binding-base comp 176 -fuav-binding-base vert 176 -fuav-binding-base tesc 192 -fuav-binding-base tese 208 -fuav-binding-base geom 224 -fuav-binding-base frag 240 --target-env=vulkan1.3
+
+DEPS = $(wildcard *.h)
+OBJ = $(patsubst %.c, $(OBJDIR)/%.o, $(wildcard *.c))
+SPV = $(patsubst $(SHADERDIR)/%, $(SPVDIR)/%.spv, $(wildcard $(SHADERDIR)/*))
+DLL = $(patsubst $(DLLDIR)/%.dll, $(BINDIR)$(SEP)%.dll, $(wildcard $(DLLDIR)/*.dll))
+
+$(BINDIR)/$(NAME): $(OBJ) $(SPV) $(DLL)
+	@echo Linking $@...
+	@$(CC) -o $@ $(OBJ) $(LDFLAGS)
+
+$(OBJDIR)/%.o: %.c $(DEPS)
+	@echo Compiling $<...
+	@$(CC) -c -o $@ $< $(CFLAGS)
+
+$(SPVDIR)/%.spv: $(SHADERDIR)/%
+	@echo Compiling $<...
+	@$(GLSLC) $< -o $@ $(GLSLFLAGS)
+
+$(BINDIR)$(SEP)%.dll: $(DLLDIR)$(SEP)%.dll
+	@echo Copying $@...
+	@$(COPY) $^ $(BINDIR) $(COPY_FLAGS)
+
+run: $(BINDIR)/$(NAME)
+	@chdir $(BINDIR) && $(NAME)
+
+clean:
+	@$(DEL) $(OBJDIR)$(SEP)*.o $(SPVDIR)$(SEP)*.spv $(BINDIR)$(SEP)*.exe $(BINDIR)$(SEP)*.dll $(BINDIR)$(SEP)*.ini

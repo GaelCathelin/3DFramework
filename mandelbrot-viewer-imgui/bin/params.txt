@@ -1,0 +1,3 @@
+WindowWidth  = 1024
+WindowHeight = 768
+#Fullscreen = 1
