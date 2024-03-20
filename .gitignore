@@ -5,3 +5,5 @@
 *.ini
 *.o
 *.layout
+!*.workspace.layout
+*.depend

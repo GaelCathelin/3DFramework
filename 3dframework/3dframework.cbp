@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="3D Framework" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/3dframeworkD" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj/debug/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/3dframework" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj/release/" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-flto" />
+					<Add option="-Ofast" />
+					<Add option="-fuse-linker-plugin" />
+					<Add option="-DNDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-flto" />
+					<Add option="-s" />
+					<Add option="-Wno-attributes" />
+					<Add option="-fuse-linker-plugin" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Winit-self" />
+			<Add option="-Wcast-align" />
+			<Add option="-Wall" />
+			<Add option="-std=c17" />
+			<Add option="-m64" />
+			<Add option="-Wmissing-include-dirs" />
+			<Add option="-std=c++17" />
+			<Add option="-march=ivybridge" />
+			<Add option="-Wno-missing-field-initializers" />
+			<Add option="-Wdisabled-optimization" />
+			<Add option="-Wdouble-promotion" />
+			<Add option="-Wno-format-security" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-cast-function-type" />
+			<Add option="-Wno-strict-aliasing" />
+			<Add option="-Werror=unused-result" />
+			<Add option="-DNOMINMAX" />
+			<Add option="-DNVRHI_SHARED_LIBRARY_BUILD" />
+			<Add option="-DVK_USE_PLATFORM_WIN32_KHR" />
+			<Add option="-DVULKAN_HPP_STORAGE_SHARED" />
+			<Add option="-DVULKAN_HPP_STORAGE_SHARED_EXPORT" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="-m64" />
+			<Add library="SDL2main" />
+			<Add library="SDL2" />
+			<Add library="vulkan-1" />
+			<Add library="spirv-cross-c-shared" />
+			<Add library="SDL2_image" />
+			<Add library="cimgui" />
+			<Add directory="lib" />
+			<Add directory="bin" />
+		</Linker>
+		<Unit filename="include/SDL2/SDL.h" />
+		<Unit filename="include/SDL2/SDL_assert.h" />
+		<Unit filename="include/SDL2/SDL_atomic.h" />
+		<Unit filename="include/SDL2/SDL_audio.h" />
+		<Unit filename="include/SDL2/SDL_bits.h" />
+		<Unit filename="include/SDL2/SDL_blendmode.h" />
+		<Unit filename="include/SDL2/SDL_clipboard.h" />
+		<Unit filename="include/SDL2/SDL_config.h" />
+		<Unit filename="include/SDL2/SDL_cpuinfo.h" />
+		<Unit filename="include/SDL2/SDL_egl.h" />
+		<Unit filename="include/SDL2/SDL_endian.h" />
+		<Unit filename="include/SDL2/SDL_error.h" />
+		<Unit filename="include/SDL2/SDL_events.h" />
+		<Unit filename="include/SDL2/SDL_filesystem.h" />
+		<Unit filename="include/SDL2/SDL_gamecontroller.h" />
+		<Unit filename="include/SDL2/SDL_gesture.h" />
+		<Unit filename="include/SDL2/SDL_guid.h" />
+		<Unit filename="include/SDL2/SDL_haptic.h" />
+		<Unit filename="include/SDL2/SDL_hidapi.h" />
+		<Unit filename="include/SDL2/SDL_hints.h" />
+		<Unit filename="include/SDL2/SDL_image.h" />
+		<Unit filename="include/SDL2/SDL_joystick.h" />
+		<Unit filename="include/SDL2/SDL_keyboard.h" />
+		<Unit filename="include/SDL2/SDL_keycode.h" />
+		<Unit filename="include/SDL2/SDL_loadso.h" />
+		<Unit filename="include/SDL2/SDL_locale.h" />
+		<Unit filename="include/SDL2/SDL_log.h" />
+		<Unit filename="include/SDL2/SDL_main.h" />
+		<Unit filename="include/SDL2/SDL_messagebox.h" />
+		<Unit filename="include/SDL2/SDL_metal.h" />
+		<Unit filename="include/SDL2/SDL_misc.h" />
+		<Unit filename="include/SDL2/SDL_mouse.h" />
+		<Unit filename="include/SDL2/SDL_mutex.h" />
+		<Unit filename="include/SDL2/SDL_name.h" />
+		<Unit filename="include/SDL2/SDL_opengl.h" />
+		<Unit filename="include/SDL2/SDL_opengl_glext.h" />
+		<Unit filename="include/SDL2/SDL_opengles.h" />
+		<Unit filename="include/SDL2/SDL_opengles2.h" />
+		<Unit filename="include/SDL2/SDL_opengles2_gl2.h" />
+		<Unit filename="include/SDL2/SDL_opengles2_gl2ext.h" />
+		<Unit filename="include/SDL2/SDL_opengles2_gl2platform.h" />
+		<Unit filename="include/SDL2/SDL_opengles2_khrplatform.h" />
+		<Unit filename="include/SDL2/SDL_pixels.h" />
+		<Unit filename="include/SDL2/SDL_platform.h" />
+		<Unit filename="include/SDL2/SDL_power.h" />
+		<Unit filename="include/SDL2/SDL_quit.h" />
+		<Unit filename="include/SDL2/SDL_rect.h" />
+		<Unit filename="include/SDL2/SDL_render.h" />
+		<Unit filename="include/SDL2/SDL_revision.h" />
+		<Unit filename="include/SDL2/SDL_rwops.h" />
+		<Unit filename="include/SDL2/SDL_scancode.h" />
+		<Unit filename="include/SDL2/SDL_sensor.h" />
+		<Unit filename="include/SDL2/SDL_shape.h" />
+		<Unit filename="include/SDL2/SDL_stdinc.h" />
+		<Unit filename="include/SDL2/SDL_surface.h" />
+		<Unit filename="include/SDL2/SDL_system.h" />
+		<Unit filename="include/SDL2/SDL_syswm.h" />
+		<Unit filename="include/SDL2/SDL_test.h" />
+		<Unit filename="include/SDL2/SDL_test_assert.h" />
+		<Unit filename="include/SDL2/SDL_test_common.h" />
+		<Unit filename="include/SDL2/SDL_test_compare.h" />
+		<Unit filename="include/SDL2/SDL_test_crc32.h" />
+		<Unit filename="include/SDL2/SDL_test_font.h" />
+		<Unit filename="include/SDL2/SDL_test_fuzzer.h" />
+		<Unit filename="include/SDL2/SDL_test_harness.h" />
+		<Unit filename="include/SDL2/SDL_test_images.h" />
+		<Unit filename="include/SDL2/SDL_test_log.h" />
+		<Unit filename="include/SDL2/SDL_test_md5.h" />
+		<Unit filename="include/SDL2/SDL_test_memory.h" />
+		<Unit filename="include/SDL2/SDL_test_random.h" />
+		<Unit filename="include/SDL2/SDL_thread.h" />
+		<Unit filename="include/SDL2/SDL_timer.h" />
+		<Unit filename="include/SDL2/SDL_touch.h" />
+		<Unit filename="include/SDL2/SDL_types.h" />
+		<Unit filename="include/SDL2/SDL_version.h" />
+		<Unit filename="include/SDL2/SDL_video.h" />
+		<Unit filename="include/SDL2/SDL_vulkan.h" />
+		<Unit filename="include/SDL2/begin_code.h" />
+		<Unit filename="include/SDL2/close_code.h" />
+		<Unit filename="include/VkBootstrap/VkBootstrap.h" />
+		<Unit filename="include/VkBootstrap/VkBootstrapDispatch.h" />
+		<Unit filename="include/acceleration_structure.h" />
+		<Unit filename="include/buffer.h" />
+		<Unit filename="include/camera.h" />
+		<Unit filename="include/cimgui/cimgui.h" />
+		<Unit filename="include/config_file.h" />
+		<Unit filename="include/context.h" />
+		<Unit filename="include/engine.h" />
+		<Unit filename="include/file.h" />
+		<Unit filename="include/format.h" />
+		<Unit filename="include/framebuffer.h" />
+		<Unit filename="include/global_defs.h" />
+		<Unit filename="include/graphics_states.h" />
+		<Unit filename="include/input.h" />
+		<Unit filename="include/matrix.h" />
+		<Unit filename="include/mesh.h" />
+		<Unit filename="include/nvrhi/common/containers.h" />
+		<Unit filename="include/nvrhi/common/misc.h" />
+		<Unit filename="include/nvrhi/common/resource.h" />
+		<Unit filename="include/nvrhi/common/resourcebindingmap.h" />
+		<Unit filename="include/nvrhi/nvrhi.h" />
+		<Unit filename="include/nvrhi/utils.h" />
+		<Unit filename="include/nvrhi/validation.h" />
+		<Unit filename="include/nvrhi/vulkan.h" />
+		<Unit filename="include/random.h" />
+		<Unit filename="include/shader.h" />
+		<Unit filename="include/spirv_cross/spirv.h" />
+		<Unit filename="include/spirv_cross/spirv_cross_c.h" />
+		<Unit filename="include/texture.h" />
+		<Unit filename="include/transform.h" />
+		<Unit filename="include/vector.h" />
+		<Unit filename="include/vk_video/vulkan_video_codec_h264std.h" />
+		<Unit filename="include/vk_video/vulkan_video_codec_h264std_decode.h" />
+		<Unit filename="include/vk_video/vulkan_video_codec_h265std.h" />
+		<Unit filename="include/vk_video/vulkan_video_codec_h265std_decode.h" />
+		<Unit filename="include/vulkan/vk_platform.h" />
+		<Unit filename="include/vulkan/vulkan.h" />
+		<Unit filename="include/vulkan/vulkan.hpp" />
+		<Unit filename="include/vulkan/vulkan_core.h" />
+		<Unit filename="include/vulkan/vulkan_enums.hpp" />
+		<Unit filename="include/vulkan/vulkan_funcs.hpp" />
+		<Unit filename="include/vulkan/vulkan_handles.hpp" />
+		<Unit filename="include/vulkan/vulkan_structs.hpp" />
+		<Unit filename="include/vulkan/vulkan_to_string.hpp" />
+		<Unit filename="include/vulkan/vulkan_win32.h" />
+		<Unit filename="src/VkBoostrap/VkBootstrap.cpp" />
+		<Unit filename="src/acceleration_structure.cpp" />
+		<Unit filename="src/buffer.cpp" />
+		<Unit filename="src/camera.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/common/dxgi-format.cpp" />
+		<Unit filename="src/common/dxgi-format.h" />
+		<Unit filename="src/common/format-info.cpp" />
+		<Unit filename="src/common/misc.cpp" />
+		<Unit filename="src/common/sparse-bitset.cpp" />
+		<Unit filename="src/common/sparse-bitset.h" />
+		<Unit filename="src/common/state-tracking.cpp" />
+		<Unit filename="src/common/state-tracking.h" />
+		<Unit filename="src/common/utils.cpp" />
+		<Unit filename="src/common/versioning.h" />
+		<Unit filename="src/config_file.cpp" />
+		<Unit filename="src/context.cpp" />
+		<Unit filename="src/engine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/format.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/framebuffer.cpp" />
+		<Unit filename="src/graphics_states.cpp" />
+		<Unit filename="src/input.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/mesh.cpp" />
+		<Unit filename="src/private_impl.h" />
+		<Unit filename="src/private_log.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/private_log.h" />
+		<Unit filename="src/random.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/sdlwindow.h" />
+		<Unit filename="src/shader.cpp" />
+		<Unit filename="src/texture.cpp" />
+		<Unit filename="src/transform.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/validation/validation-backend.h" />
+		<Unit filename="src/validation/validation-commandlist.cpp" />
+		<Unit filename="src/validation/validation-device.cpp" />
+		<Unit filename="src/vulkan/vulkan-allocator.cpp" />
+		<Unit filename="src/vulkan/vulkan-backend.h" />
+		<Unit filename="src/vulkan/vulkan-buffer.cpp" />
+		<Unit filename="src/vulkan/vulkan-commandlist.cpp" />
+		<Unit filename="src/vulkan/vulkan-compute.cpp" />
+		<Unit filename="src/vulkan/vulkan-constants.cpp" />
+		<Unit filename="src/vulkan/vulkan-device.cpp" />
+		<Unit filename="src/vulkan/vulkan-graphics.cpp" />
+		<Unit filename="src/vulkan/vulkan-meshlets.cpp" />
+		<Unit filename="src/vulkan/vulkan-queries.cpp" />
+		<Unit filename="src/vulkan/vulkan-queue.cpp" />
+		<Unit filename="src/vulkan/vulkan-raytracing.cpp" />
+		<Unit filename="src/vulkan/vulkan-resource-bindings.cpp" />
+		<Unit filename="src/vulkan/vulkan-shader.cpp" />
+		<Unit filename="src/vulkan/vulkan-staging-texture.cpp" />
+		<Unit filename="src/vulkan/vulkan-state-tracking.cpp" />
+		<Unit filename="src/vulkan/vulkan-texture.cpp" />
+		<Unit filename="src/vulkan/vulkan-upload.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
