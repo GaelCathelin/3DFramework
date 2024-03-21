@@ -3,7 +3,7 @@
 #include <transform.h>
 
 typedef struct Camera Camera;
-typedef void (*CameraUpdateFunc)(Camera*, const unsigned int);
+typedef void (*CameraUpdateFunc)(Camera*, const uint);
 struct Camera {
     bool isMoving;
     float near, far, fovy, yaw, pitch, speed, inertia;
@@ -19,7 +19,7 @@ extern "C" {
 Camera* getCamera();
 void setCamera(const Camera *cam);
 
-void flyCamera(Camera *cam, const unsigned int dt);
+void flyCamera(Camera *cam, const uint dt);
 
 #ifdef __cplusplus
 }

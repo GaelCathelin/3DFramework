@@ -9,7 +9,7 @@ static void screenshot() {
 }
 
 int main(int, char**) {
-    SCOPED(Application) app = initApplication("Mandelbrot", 1024, 768, SRGB_FLAG | 0*VSYNC_FLAG | 1*RDNA_FLAG);
+    SCOPED(Application) app = initApplication("Mandelbrot", 1024, 768, SRGB_FLAG | 0*VSYNC_FLAG | 0*RDNA_FLAG | 0*NV_TURING_FLAG);
     SCOPED(Shader) shader = loadShader(SHADER_DIR "mandelbrot");
 
     enum : int {FP16, FP32, FP64, INT32, INT64} version = FP32;

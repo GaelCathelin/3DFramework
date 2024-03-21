@@ -1,6 +1,7 @@
 *.exe
 *.spv
 *.dll
+!3dframework/**/*.*
 *.ini
 *.o
-!3dframework/*.*
+*.layout

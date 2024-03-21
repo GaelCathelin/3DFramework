@@ -12,7 +12,8 @@
 #include <shader.h>
 #include <SDL2/SDL.h>
 
-#define SHADER_DIR  "../spv/"
+#define TEXTURE_DIR "../textures/"
+#define MODEL_DIR   "../models/"
 
 typedef bool (*UserEventsFunc )();
 typedef void (*UserDrawFunc   )();

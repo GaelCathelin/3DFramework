@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Project" />
+		<Option makefile_is_custom="1" />
+		<Option execution_dir="." />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<MakeCommands>
+			<Build command="$make -j" />
+			<CompileFile command="$make $file" />
+			<Clean command="$make clean" />
+			<DistClean command="$make -f $makefile distclean$target" />
+			<AskRebuildNeeded command="$make -q" />
+			<SilentBuild command="$make -j &gt; $(CMD_NULL)" />
+		</MakeCommands>
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Demod" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
+				<Option object_output="obj/release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<MakeCommands>
+					<Build command="$make -f Makefiled -j" />
+					<CompileFile command="$make -f Makefiled $filed" />
+					<Clean command="$make -f Makefiled clean" />
+					<DistClean command="$make -f $makefile distclean$target" />
+					<AskRebuildNeeded command="$make -f Makefiled -q" />
+					<SilentBuild command="$make -f Makefiled -j &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Demo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
+				<Option object_output="obj/release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<MakeCommands>
+					<Build command="$make -j" />
+					<CompileFile command="$make $file" />
+					<Clean command="$make clean" />
+					<DistClean command="$make -f $makefile distclean$target" />
+					<AskRebuildNeeded command="$make -q" />
+					<SilentBuild command="$make -j &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../3dframework/include/SDL2/SDL.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_assert.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_atomic.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_audio.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_bits.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_blendmode.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_clipboard.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_config.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_cpuinfo.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_egl.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_endian.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_error.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_events.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_filesystem.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_gamecontroller.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_gesture.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_guid.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_haptic.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_hidapi.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_hints.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_image.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_joystick.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_keyboard.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_keycode.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_loadso.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_locale.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_log.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_main.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_messagebox.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_metal.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_misc.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_mouse.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_mutex.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_name.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengl.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengl_glext.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengles.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengles2.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengles2_gl2.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengles2_gl2ext.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengles2_gl2platform.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_opengles2_khrplatform.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_pixels.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_platform.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_power.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_quit.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_rect.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_render.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_revision.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_rwops.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_scancode.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_sensor.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_shape.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_stdinc.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_surface.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_system.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_syswm.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_assert.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_common.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_compare.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_crc32.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_font.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_fuzzer.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_harness.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_images.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_log.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_md5.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_memory.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_test_random.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_thread.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_timer.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_touch.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_types.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_version.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_video.h" />
+		<Unit filename="../3dframework/include/SDL2/SDL_vulkan.h" />
+		<Unit filename="../3dframework/include/SDL2/begin_code.h" />
+		<Unit filename="../3dframework/include/SDL2/close_code.h" />
+		<Unit filename="../3dframework/include/VkBootstrap/VkBootstrap.h" />
+		<Unit filename="../3dframework/include/VkBootstrap/VkBootstrapDispatch.h" />
+		<Unit filename="../3dframework/include/acceleration_structure.h" />
+		<Unit filename="../3dframework/include/buffer.h" />
+		<Unit filename="../3dframework/include/camera.h" />
+		<Unit filename="../3dframework/include/cimgui/cimgui.h" />
+		<Unit filename="../3dframework/include/config_file.h" />
+		<Unit filename="../3dframework/include/context.h" />
+		<Unit filename="../3dframework/include/engine.h" />
+		<Unit filename="../3dframework/include/file.h" />
+		<Unit filename="../3dframework/include/format.h" />
+		<Unit filename="../3dframework/include/framebuffer.h" />
+		<Unit filename="../3dframework/include/global_defs.h" />
+		<Unit filename="../3dframework/include/graphics_states.h" />
+		<Unit filename="../3dframework/include/input.h" />
+		<Unit filename="../3dframework/include/matrix.h" />
+		<Unit filename="../3dframework/include/mesh.h" />
+		<Unit filename="../3dframework/include/nvrhi/common/containers.h" />
+		<Unit filename="../3dframework/include/nvrhi/common/misc.h" />
+		<Unit filename="../3dframework/include/nvrhi/common/resource.h" />
+		<Unit filename="../3dframework/include/nvrhi/common/resourcebindingmap.h" />
+		<Unit filename="../3dframework/include/nvrhi/nvrhi.h" />
+		<Unit filename="../3dframework/include/nvrhi/utils.h" />
+		<Unit filename="../3dframework/include/nvrhi/validation.h" />
+		<Unit filename="../3dframework/include/nvrhi/vulkan.h" />
+		<Unit filename="../3dframework/include/random.h" />
+		<Unit filename="../3dframework/include/shader.h" />
+		<Unit filename="../3dframework/include/spirv_cross/spirv.h" />
+		<Unit filename="../3dframework/include/spirv_cross/spirv_cross_c.h" />
+		<Unit filename="../3dframework/include/texture.h" />
+		<Unit filename="../3dframework/include/transform.h" />
+		<Unit filename="../3dframework/include/vector.h" />
+		<Unit filename="../3dframework/include/vk_video/vulkan_video_codec_h264std.h" />
+		<Unit filename="../3dframework/include/vk_video/vulkan_video_codec_h264std_decode.h" />
+		<Unit filename="../3dframework/include/vk_video/vulkan_video_codec_h265std.h" />
+		<Unit filename="../3dframework/include/vk_video/vulkan_video_codec_h265std_decode.h" />
+		<Unit filename="../3dframework/include/vulkan/vk_platform.h" />
+		<Unit filename="../3dframework/include/vulkan/vulkan.h" />
+		<Unit filename="../3dframework/include/vulkan/vulkan.hpp" />
+		<Unit filename="../3dframework/include/vulkan/vulkan_core.h" />
+		<Unit filename="../3dframework/include/vulkan/vulkan_enums.hpp" />
+		<Unit filename="../3dframework/include/vulkan/vulkan_funcs.hpp" />
+		<Unit filename="../3dframework/include/vulkan/vulkan_handles.hpp" />
+		<Unit filename="../3dframework/include/vulkan/vulkan_structs.hpp" />
+		<Unit filename="../3dframework/include/vulkan/vulkan_to_string.hpp" />
+		<Unit filename="../3dframework/include/vulkan/vulkan_win32.h" />
+		<Unit filename="Makefile" />
+		<Unit filename="Makefiled" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="shaders/shader.frag" />
+		<Unit filename="shaders/shader.vert" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

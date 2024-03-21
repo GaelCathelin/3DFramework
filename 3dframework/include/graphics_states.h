@@ -38,6 +38,7 @@ typedef enum : uchar {
 } BlendOp;
 
 typedef enum : uchar {
+    ColorMask_None  = 0,
     ColorMask_Red   = 1,
     ColorMask_Green = 2,
     ColorMask_Blue  = 4,
@@ -88,11 +89,11 @@ typedef struct {
     float    depthBiasClamp;
     float    slopeScaledDepthBias;
     uchar    forcedSampleCount; // ?
-    bool     programmableSamplePositionsEnable; // ?
+    bool     programmableSampleLocationsEnable;
     bool     conservativeRasterEnable;
     bool     quadFillEnable; // ?
-    char     samplePositionsX[16]; // ?
-    char     samplePositionsY[16]; // ?
+    char     sampleLocationsX[16]; // 4 bit values
+    char     sampleLocationsY[16]; // 4 bit values
 } RasterState;
 
 typedef enum : uchar {
@@ -131,7 +132,7 @@ typedef struct {
 } ViewportState;
 
 typedef enum : uchar {
-	VRS_1x1, VRS_1x2, VRS_2x1, VRS_2x2, VRS_2x4, VRS_4x2, VRS_4x4
+    VRS_1x1, VRS_1x2, VRS_2x1, VRS_2x2, VRS_2x4, VRS_4x2, VRS_4x4
 } VariableShadingRate;
 
 typedef enum : uchar {
@@ -168,6 +169,9 @@ void pushRenderState();
 void popRenderState();
 void setDefaultRenderState();
 void resetRenderState();
+
+void setBlendFactors(const uint target, const BlendFactor srcBlend, const BlendFactor srcBlendAlpha, const BlendFactor destBlend, const BlendFactor destBlendAlpha);
+void setSampleLocation(const uint sample, const float x, const float y);
 
 #ifdef __cplusplus
 }
