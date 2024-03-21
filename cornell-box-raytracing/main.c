@@ -1,13 +1,34 @@
 #include <engine.h>
 #include "wavefront.h"
 
-#define SPP  16
-#define AA_X 2
-#define AA_Y 4
+#define SPP  1
+#define AA_X 1
+#define AA_Y 1
+
+static Buffer WARN_UNUSED_RESULT createSamplingBuffer(const int maxDims) {
+    const uint nbCoeffs = maxDims * (maxDims + 1) >> 1;
+    uint coeffs[nbCoeffs];
+
+	for (int dim = 1, i = 0; dim <= maxDims; dim++) {
+		double r = 1.0, r2 = 0.0;
+		while (r2 != r) {
+			r2 = r;
+			r = pow(1.0 + r, 1.0 / (1.0 + dim));
+		}
+
+		for (int c = 1; c <= dim; c++, i++)
+            coeffs[i] = round((1ull << 32) * pow(r, -c));
+	}
+
+    Buffer buffer = createBuffer(ResourceType_UnorderedAccess, sizeof(coeffs));
+    setBufferData(buffer, coeffs, sizeof(coeffs));
+    return buffer;
+}
 
 int main(int, char**) {
     SCOPED(Application) app = initApplication("Cornell Box", 768, 768, SRGB_FLAG | RAYTRACING_FLAG);
     SCOPED(Texture) bluenoise = loadTexture("../textures/bluenoise256.png", 0);
+    SCOPED(Buffer) samplingBuffer = createSamplingBuffer(20);
     SCOPED(Shader) shader = loadShader(SHADER_DIR "shader");
     SCOPED(Shader) resolve = loadShader(SHADER_DIR "resolve");
 
@@ -20,12 +41,11 @@ int main(int, char**) {
     SCOPED(AccelerationStructure) accel = {};
     SCOPED(Buffer) materials = {};
     {
-        struct {Float4 Kd, Ke; uint first, _pad[3];} mats[meshData.nbMeshes];
+        struct {Float4 Kd, Ke;} mats[meshData.nbMeshes];
         Range ranges[meshData.nbMeshes];
         for (uint i = 0; i < meshData.nbMeshes; i++) {
             mats[i].Kd = meshData.meshes[i].material->Kd;
             mats[i].Ke = meshData.meshes[i].material->Ke;
-            mats[i].first = meshData.meshes[i].range.first / 3;
             ranges[i] = meshData.meshes[i].range;
         }
         accel = createMultiAccelerationStructure(mesh, ranges, meshData.nbMeshes, false);
@@ -64,6 +84,7 @@ int main(int, char**) {
             setUniformAccelerationStructure(accel);
             setUniformBuffer(materials, "Materials");
             setUniformTexture(bluenoise, "Bluenoise");
+            setUniformBuffer(samplingBuffer, "Sampling");
             setUniform1i(frameId, "frameId");
             setUniform1i(SPP / (AA_X * AA_Y), "spp");
             setUniform2i(AA_X, AA_Y, "aa");

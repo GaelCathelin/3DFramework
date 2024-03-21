@@ -1,9 +1,10 @@
 #extension GL_EXT_ray_query: require
 #extension GL_EXT_ray_tracing_position_fetch: require
+#extension GL_EXT_scalar_block_layout: require
 
 #define PI 3.1415927
 
-struct Material {vec3 Kd, Ke; uvec4 first;};
+struct Material {vec3 Kd, Ke;};
 
 layout(binding = 1) uniform _ {
     int frameId, spp;
@@ -13,6 +14,7 @@ layout(binding = 1) uniform _ {
 layout(binding = 2) uniform accelerationStructureEXT Accel;
 layout(binding = 3) readonly buffer Materials {Material materials[];};
 layout(binding = 4) uniform sampler2D Bluenoise;
+layout(binding = 5, scalar) buffer Sampling {uint sampling[];};
 
 centroid in vec3 iPos, iNormal;
 
@@ -52,6 +54,11 @@ float goldenSequence(uint i) {return uint2float(i * 2654435769u);}
 vec2 plasticSequence(uint i) {return vec2(uint2float(i * 3242174889u), uint2float(i * 2447445414u));}
 vec3 cosineSample(vec2 r) {return vec3(cos(2.0 * PI * r.x) * sqrt(r.y), sin(2.0 * PI * r.x) * sqrt(r.y), sqrt(1.0 - r.y));}
 
+vec2 customSequence(uint i, uint j) {
+    const uint offset = (20 * 19) / 2 + 2 * j;
+    return vec2(uint2float(i * sampling[offset]), uint2float(i * sampling[offset + 1]));
+}
+
 vec3 sampleLight(vec3 O, mat3 TBN, vec2 r) {
     // Hardcoded light information (should extract it from mesh)
     const vec3 LightGeom = vec3(0.5, 0.5, 1.99);
@@ -74,7 +81,7 @@ vec3 tracePath(vec3 O, mat3 TBN, vec2 r) {
     vec3 Accum = vec3(0.0), Throughput = vec3(1.0);
 //    Accum = -sampleLight(O, TBN, r);
 
-    for (;;) { // YOLO
+    for (int i = 0; i < 9; i++) { // YOLO
         Accum += Throughput * sampleLight(O, TBN, r);
 
         vec3 D = TBN * cosineSample(r);
@@ -85,13 +92,14 @@ vec3 tracePath(vec3 O, mat3 TBN, vec2 r) {
             return Accum;
 
         Material mat = materials[rayQueryGetIntersectionGeometryIndexEXT(query, true)];
-        float rr = max(mat.Kd.r, max(mat.Kd.g, mat.Kd.b));
+        float rr = 1.0;//max(mat.Kd.r, max(mat.Kd.g, mat.Kd.b));
         if (fract(Noise.z + rand()) >= rr)
             return Accum;
 
         Throughput *= mat.Kd / rr;
         O += D * rayQueryGetIntersectionTEXT(query, true);
-        r = fract(Noise.xy + vec2(rand(), rand()));
+//        r = fract(Noise.xy + vec2(rand(), rand()));
+        r = fract(Noise.xy + customSequence(frameId * spp + i, i + 1));
         vec3 tri[3];
         rayQueryGetIntersectionTriangleVertexPositionsEXT(query, true, tri);
         TBN = genTB(normalize(cross(tri[1] - tri[0], tri[2] - tri[0])));
@@ -109,7 +117,8 @@ void main() {
 
     vec3 Color = vec3(0.0);
     for (uint i = 0; i < spp; i++) {
-        vec2 r = fract(Noise.xy + plasticSequence(frameId * spp + i));
+//        vec2 r = fract(Noise.xy + plasticSequence(frameId * spp + i));
+        vec2 r = fract(Noise.xy + customSequence(frameId * spp + i, 0));
 //        Color += sampleLight(iPos, TBN, r);
         Color += tracePath(iPos, TBN, r);
     }
