@@ -1,0 +1,11 @@
+newmtl light
+Ke 48 36 12
+
+newmtl white
+Kd 0.6 0.6 0.6
+
+newmtl red
+Kd 0.6 0.04 0.04
+
+newmtl green
+Kd 0.02 0.3 0.02
