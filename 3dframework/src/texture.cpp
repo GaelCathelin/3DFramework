@@ -84,25 +84,6 @@ Texture loadTexture(const char *filename, const ulong flags) {
     return tex;
 }
 
-Texture loadTextures(const char *filename, const uint nbTextures, const ulong flags) {
-    const bool srgb = (flags & SRGB_FLAG) != 0, snorm = (flags & SNORM_FLAG) != 0;
-    SDL_Surface *surface[nbTextures];
-    for (uint i = 0; i < nbTextures; i++) {
-        char fullname[256];
-        sprintf(fullname, filename, i);
-        surface[i] = loadSurface(fullname);
-    }
-
-    Texture tex = createTexture(Texture2DArray, surface[0]->w, surface[0]->h, 1, nbTextures, srgb ? SRGBA8_UNORM : snorm ? RGBA8_SNORM : RGBA8_UNORM, flags);
-    for (uint i = 0; i < nbTextures; i++) {
-        setTextureLayerData(tex, i, surface[i]->pixels);
-        SDL_FreeSurface(surface[i]);
-    }
-
-    if (flags & MIPMAPS_FLAG) updateMipmaps(tex);
-    return tex;
-}
-
 void deleteTexture(Texture *tex) {
     if (!tex || !tex->impl)
         return;
