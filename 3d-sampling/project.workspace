@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="../3dframework/3dframework.cbp" />
+		<Project filename="project.cbp">
+			<Depends filename="../3dframework/3dframework.cbp" />
+		</Project>
+	</Workspace>
+</CodeBlocks_workspace_file>

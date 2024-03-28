@@ -61,7 +61,6 @@ Texture createTexture3D(const uint width, const uint height, const uint depth, c
 Texture createTexture(const TextureType type, const uint width, const uint height, const uint depth, const uint layers, const Format format, const ulong flags) WARN_UNUSED_RESULT;
 
 Texture loadTexture(const char *filename, const ulong flags) WARN_UNUSED_RESULT;
-Texture loadTextures(const char *filename, const uint nbTextures, const ulong flags) WARN_UNUSED_RESULT;
 Texture loadTexturePFM(const char *filename, const ulong flags) WARN_UNUSED_RESULT;
 
 void deleteTexture(Texture *tex);

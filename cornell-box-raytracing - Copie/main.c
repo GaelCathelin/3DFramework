@@ -1,9 +1,9 @@
 #include <engine.h>
 #include "wavefront.h"
 
-#define SPP  8
-#define AA_X 2
-#define AA_Y 4
+#define SPP  1
+#define AA_X 1
+#define AA_Y 1
 
 int main(int, char**) {
     SCOPED(Application) app = initApplication("Cornell Box", 768, 768, SRGB_FLAG | RAYTRACING_FLAG);
