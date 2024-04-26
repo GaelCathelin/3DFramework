@@ -187,4 +187,4 @@ static inline Float4 transformm4(Mat4 m, Float4 v) {
 }
 #endif
 
-#define printm4(m_) ({Mat4 m; copym4(m, m_); print4(m[0]); print4(m[1]); print4(m[2]); print4(m[3]); putchar('\n');})
+#define printm4(m_) ({Mat4 m; copym4(m, m_); print4(m[0]); putchar('\n'); print4(m[1]); putchar('\n'); print4(m[2]); putchar('\n'); print4(m[3]); putchar('\n');})

@@ -65,7 +65,7 @@ static const Float4 __attribute__((aligned(16)))
     #define projectn4(a_, b_) VV_(a_, b_, dot4(a, b) * b)
     #define projectn3(a_, b_) VV_(a_, b_, dot3(a, b) * b)
     #define projectn2(a_, b_) VV_(a_, b_, dot2(a, b) * b)
-    #define print4(v_) V_(v_, printf("%g %g %g %g\n", (double)v[0], (double)v[1], (double)v[2], (double)v[3]))
+    #define print4(v_) V_(v_, printf("%g %g %g %g", (double)v[0], (double)v[1], (double)v[2], (double)v[3]))
 #endif
 
 #if defined(__SSE2__)

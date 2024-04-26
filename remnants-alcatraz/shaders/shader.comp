@@ -1,0 +1,42 @@
+layout(local_size_x_id = 0, local_size_y_id = 1, local_size_z_id = 2) in;
+
+uniform _ {
+    mat4 InverseProjectionMatrix, InverseViewMatrix;
+    vec3 CameraPosition;
+    float A, B, C;
+};
+
+writeonly uniform image2D Framebuffer;
+
+#define STEPS 30
+#define EPSILON 1.0 / 30.0
+
+vec2 rotate(vec2 v, float r) {
+	return v + v.yx * vec2(-r, r);
+}
+
+void main() {
+    ivec3 iResolution = ivec3(gl_NumWorkGroups * gl_WorkGroupSize);
+    ivec2 fragCoord = ivec2(gl_GlobalInvocationID);
+
+    vec4 far = InverseViewMatrix * InverseProjectionMatrix * vec4(fragCoord * 2.0 / iResolution.xy - 1.0, 0.0, 1.0);
+    vec4 near = InverseViewMatrix * InverseProjectionMatrix * vec4(fragCoord * 2.0 / iResolution.xy - 1.0, 1.0, 1.0);
+    vec3 dir = normalize(far.xyz / far.w - near.xyz / near.w);
+    vec3 pos = CameraPosition;
+
+	int l;
+	for (l = 0; l < STEPS; l++) {
+		vec3 v = pos;
+		float s = pos.z;
+		for (float i = 100.0; i > 0.1; i *= A) {
+			v.xy = rotate(v.xy, C);
+			v = B * i - abs(mod(v, 2.0 * i) - i);
+			s = max(s, min(v.x, min(v.y, v.z)));
+		}
+
+		if (s < 1.0 / EPSILON) break;
+		pos += s * dir;
+	}
+
+    imageStore(Framebuffer, fragCoord, vec4(vec3(float(l) / STEPS), 1.0));
+}
